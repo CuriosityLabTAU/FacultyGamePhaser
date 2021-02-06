@@ -1,3 +1,4 @@
+var study = 'dutch'; // 'english', 'hebrew'
 var gamestate= {};
 gamestate= {};
         gamestate.subjects = ['animals', 'history', 'internet', 'environment', 'music', 'space', 'media', 'food', 'body'];
@@ -15,15 +16,17 @@ function onObjectClicked(pointer,gameObject) {
     console.log(gameObject);
     console.log(is_someone_playing());
     if (!is_someone_playing()) {
-        var f = gameObject.getData();
+        console.log(gameObject);
+        var f = gameObject.getData('name');
         gamestate.animationTracker= f;
         gamestate.animationObject= gameObject;
-
+        console.log(f);
+        console.log(gamestate.subjects[f]+"animate");
         gameObject.play(gamestate.subjects[f]+"animate",true)
         var a = gamestate.sub_audio_counter[f];
         if (a < 9) {
             gamestate.sub_audio[f][a].play();
-            is_playing = [gameObject.getData(), a];
+            is_playing = [gameObject.getData('name'), a];
             gamestate.sub_audio_counter[f] += 1;
         }
     }
@@ -44,6 +47,6 @@ function is_someone_playing() {
 function sound_ended(sound) {
     console.log('completed', sound);
     is_playing = null;
-    gamestate.sub_audio_counter[sound.getData()] += 1;
+    gamestate.sub_audio_counter[sound.getData('name')] += 1;
 };
 

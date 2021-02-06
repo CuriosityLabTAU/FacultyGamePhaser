@@ -42,7 +42,8 @@ class GameScreen extends Phaser.Scene {
                 gameObject.clearTint();
             });
             gamestate.sub_img[f].name = gamestate.subjects[f];
-            gamestate.sub_img[f].setData(f);
+            console.log(f);
+            gamestate.sub_img[f].setData('name', f);
         };
 
         for(let f=0;f<gamestate.subjects.length;f++){
@@ -68,7 +69,6 @@ class GameScreen extends Phaser.Scene {
         if (gamestate.animationObject!=null) {
             if (!is_someone_playing()) {
                 gamestate.sub_img[gamestate.animationTracker].anims.pause()
-                console.log('11');
                 //gamestate.animationObject.play(gamestate.subjects[gamestate.animationTracker]+"stop",true)
             }
         }
