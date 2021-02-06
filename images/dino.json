@@ -1,0 +1,230 @@
+{
+	"textures": [
+		{
+			"image": "dino.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 2040,
+				"h": 1888
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "Idle_1.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 680,
+						"h": 472
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 680,
+						"h": 472
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 680,
+						"h": 472
+					}
+				},
+				{
+					"filename": "Idle_2.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 680,
+						"h": 472
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 680,
+						"h": 472
+					},
+					"frame": {
+						"x": 680,
+						"y": 0,
+						"w": 680,
+						"h": 472
+					}
+				},
+				{
+					"filename": "Idle_3.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 680,
+						"h": 472
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 680,
+						"h": 472
+					},
+					"frame": {
+						"x": 1360,
+						"y": 0,
+						"w": 680,
+						"h": 472
+					}
+				},
+				{
+					"filename": "Idle_4.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 680,
+						"h": 472
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 680,
+						"h": 472
+					},
+					"frame": {
+						"x": 0,
+						"y": 472,
+						"w": 680,
+						"h": 472
+					}
+				},
+				{
+					"filename": "Idle_5.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 680,
+						"h": 472
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 680,
+						"h": 472
+					},
+					"frame": {
+						"x": 680,
+						"y": 472,
+						"w": 680,
+						"h": 472
+					}
+				},
+				{
+					"filename": "Idle_6.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 680,
+						"h": 472
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 680,
+						"h": 472
+					},
+					"frame": {
+						"x": 1360,
+						"y": 472,
+						"w": 680,
+						"h": 472
+					}
+				},
+				{
+					"filename": "Idle_7.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 680,
+						"h": 472
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 680,
+						"h": 472
+					},
+					"frame": {
+						"x": 0,
+						"y": 944,
+						"w": 680,
+						"h": 472
+					}
+				},
+				{
+					"filename": "Idle_8.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 680,
+						"h": 472
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 680,
+						"h": 472
+					},
+					"frame": {
+						"x": 680,
+						"y": 944,
+						"w": 680,
+						"h": 472
+					}
+				},
+				{
+					"filename": "Idle_9.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 680,
+						"h": 472
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 680,
+						"h": 472
+					},
+					"frame": {
+						"x": 1360,
+						"y": 944,
+						"w": 680,
+						"h": 472
+					}
+				},
+				{
+					"filename": "Idle_10.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 680,
+						"h": 472
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 680,
+						"h": 472
+					},
+					"frame": {
+						"x": 0,
+						"y": 1416,
+						"w": 680,
+						"h": 472
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:2ffc937a79cdca1db87c7c334e28ab6d:a46a70b94dd04f5089a3f1e8dbdb4907:604dd05d6aaab271297d13217355623b$"
+	}
+}
