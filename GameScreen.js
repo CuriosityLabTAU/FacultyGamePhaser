@@ -21,7 +21,13 @@ class GameScreen extends Phaser.Scene {
     }
 
     create() {
-//        this.scene.start("OpenScreen")
+        this.time.addEvent({
+            delay: 2000,
+            callback: ()=> {
+                this.scene.start("OpenScreen");
+            }
+        });
+//
         this.add.image(400, 300, 'background').setScale(1.7,1.6);
 
         var style = { font: "bold 24px Arial", fill: "#000", boundsAlignH: "center", boundsAlignV: "middle", wordWrap: true, wordWrapWidth: 300, maxLines: 2, align: "center" };
