@@ -1,8 +1,12 @@
-var study = 'dutch'; // 'english', 'hebrew'
+console.log(items);
 var gamestate= {};
 gamestate= {};
-        gamestate.subjects = ['animals', 'history', 'internet', 'environment', 'music', 'space', 'media', 'food', 'body'];
-        gamestate.wav_subjects = ['animals', 'history', 'internet', 'environment', 'music', 'space', 'media', 'food', 'body'];
+
+gamestate.subjects = Object.keys(items['list']);
+console.log(gamestate);
+
+//        gamestate.subjects = ['animals', 'history', 'internet', 'environment', 'music', 'space', 'media', 'food', 'body'];
+//        gamestate.wav_subjects = ['animals', 'history', 'internet', 'environment', 'music', 'space', 'media', 'food', 'body'];
         gamestate.sub_x = [0.1, 0.4, 0.7, 0.25, 0.55, 0.85, 0.1, 0.4, 0.7];
         gamestate.sub_y = [0.2, 0.2, 0.2, 0.5, 0.5, 0.5, 0.8, 0.8, 0.8];
         gamestate.sub_img = [];
@@ -13,8 +17,6 @@ gamestate= {};
         gamestate.animationTracker= 0;
 
 function onObjectClicked(pointer,gameObject) {
-    console.log(gameObject);
-    console.log(is_someone_playing());
     if (!is_someone_playing()) {
         console.log(gameObject);
         var f = gameObject.getData('name');
@@ -29,6 +31,9 @@ function onObjectClicked(pointer,gameObject) {
             is_playing = [gameObject.getData('name'), a];
             gamestate.sub_audio_counter[f] += 1;
         }
+        console.log(items['list'][gamestate.subjects[f]]);
+        console.log('a', a+1);
+        text.setText(items['list'][gamestate.subjects[f]]['text'][a+1]["text"]);
     }
 
 };
@@ -48,5 +53,6 @@ function sound_ended(sound) {
     console.log('completed', sound);
     is_playing = null;
     gamestate.sub_audio_counter[sound.getData('name')] += 1;
+    text.setText("");
 };
 

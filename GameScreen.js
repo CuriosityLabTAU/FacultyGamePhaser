@@ -1,3 +1,5 @@
+var text;
+
 class GameScreen extends Phaser.Scene {
 	constructor(){
 		super({ key: 'GameScreen' });
@@ -5,17 +7,26 @@ class GameScreen extends Phaser.Scene {
 
     preload (){
         for(let f=0;f<gamestate.subjects.length;f++) {
-            this.load.atlas(gamestate.subjects[f]+ "img", "images/dino.png", "images/dino.json");
+//            this.load.atlas(gamestate.subjects[f]+ "img", "images/dino.png", "images/dino.json");
+            let the_name = items['list'][gamestate.subjects[f]]['img']["1"].replace('_1.png', '');
+            console.log(the_name);
+            let the_img = "assets/" + items['study'] + "/" + the_name + ".png";
+            let the_json = "assets/" + items['study'] + "/" + the_name + ".json";
+            this.load.atlas(gamestate.subjects[f]+ "img", the_img, the_json);
             for(let a=1;a<9;a++) {
-                this.load.audio(gamestate.subjects[f] + a, "assets/" + gamestate.wav_subjects[f] + a + ".wav");
+                this.load.audio(gamestate.subjects[f] + a, "assets/" + items['study'] + "/" + items['list'][gamestate.subjects[f]]['text'][a]['audio'])
             }
         }
-        this.load.image("background", "assets/background.png")
+        this.load.image("background", "assets/" + items['study'] + "/background.png")
     }
 
     create() {
 //        this.scene.start("OpenScreen")
         this.add.image(400, 300, 'background').setScale(1.7,1.6);
+
+        var style = { font: "bold 24px Arial", fill: "#000", boundsAlignH: "center", boundsAlignV: "middle", wordWrap: true, wordWrapWidth: 300, maxLines: 2, align: "center" };
+        text = this.add.text(0, 520, "", style);
+
         gamestate.sub_img = [];
         for(let f=0;f<gamestate.subjects.length;f++) {
             gamestate.sub_img.push(this.physics.add.sprite(config['width'] * gamestate.sub_x[f], config['height'] * gamestate.sub_y[f], gamestate.subjects[f] + "img"))
