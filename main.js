@@ -9,7 +9,7 @@ var config = {
             debug: false
         }
     },
-    scene: [OpenScreen, GameScreen],
+    scene: [OpenScreen, GameScreen, CloseScreen],
     audio: {
         disableWebAudio: true
     }

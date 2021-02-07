@@ -22,9 +22,10 @@ class GameScreen extends Phaser.Scene {
 
     create() {
         this.time.addEvent({
-            delay: 2000,
+            delay: 120000,
             callback: ()=> {
-                this.scene.start("OpenScreen");
+                this.scene.stop("GameScreen");
+                this.scene.start("CloseScreen");
             }
         });
 //
