@@ -8,7 +8,7 @@ var items = {
         "y": "250"
       },
       "img": {
-        "1": "animals"
+        "1": "dino"
       },
       "text": {
         "1": {

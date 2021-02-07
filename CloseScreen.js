@@ -7,7 +7,7 @@ class CloseScreen extends Phaser.Scene {
     };
 
     create(){
-        this.add.text(200,200,"GAME COMPLETED", {fontSize: 38});
+        this.add.text(200,200,"THE END", {fontSize: 38});
     };
     update()
     {};
