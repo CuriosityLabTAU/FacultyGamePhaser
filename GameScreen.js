@@ -44,6 +44,7 @@ class GameScreen extends Phaser.Scene {
             var sub_a = []
             for(let a=1;a<9;a++) {
                 sub_a.push(this.sound.add(gamestate.subjects[f] + a));
+                sub_a[a-1].once('complete', sound_ended);
             }
             gamestate.sub_audio.push(sub_a);
             gamestate.sub_audio_counter.push(0);
@@ -70,18 +71,19 @@ class GameScreen extends Phaser.Scene {
             this.anims.create({
             key: gamestate.subjects[f]+"animate",
             frames: this.anims.generateFrameNames(gamestate.subjects[f]+"img", {start: 0, end: 9, zeropad: 1, prefix: "Idle_", suffix: ".png"}),
-            frameRate: 8,
-            repeat: -1
+            frameRate: 10, //8,
+            repeat: 0 //-1
             });
 
             this.anims.create({
             key: gamestate.subjects[f]+"stop",
-            frames: this.anims.generateFrameNames(gamestate.subjects[f]+"img", {start: 0, end: 0, zeropad: 1, prefix: "Idle_", suffix: ".png"}),
+            frames: this.anims.generateFrameNames(gamestate.subjects[f]+"img", {start: 1, end: 1, zeropad: 1, prefix: "Idle_", suffix: ".png"}),
             frameRate: 0,
             repeat: 0
             })
         }
         this.input.on('gameobjectdown', onObjectClicked);
+        this.input.on('gameobjectup', onObjectUp);
 
     };
 

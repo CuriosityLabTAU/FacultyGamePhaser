@@ -15,6 +15,7 @@ console.log(gamestate);
         gamestate.is_playing = null;
         gamestate.animationObject= null;
         gamestate.animationTracker= 0;
+        gamestate.sub_music = [];
 
 function onObjectClicked(pointer,gameObject) {
     if (!is_someone_playing()) {
@@ -35,7 +36,16 @@ function onObjectClicked(pointer,gameObject) {
         console.log('a', a+1);
         text.setText(items['list'][gamestate.subjects[f]]['text'][a+1]["text"]);
     }
+};
 
+function onObjectUp(pointer,gameObject) {
+    console.log(gameObject);
+    var f = gameObject.getData('name');
+    gamestate.animationTracker= f;
+    gamestate.animationObject= gameObject;
+    console.log(f);
+    console.log(gamestate.subjects[f]+"stop");
+    gameObject.play(gamestate.subjects[f]+"stop",true)
 };
 
 function is_someone_playing() {
@@ -52,7 +62,7 @@ function is_someone_playing() {
 function sound_ended(sound) {
     console.log('completed', sound);
     is_playing = null;
-    gamestate.sub_audio_counter[sound.getData('name')] += 1;
+
     text.setText("");
 };
 
