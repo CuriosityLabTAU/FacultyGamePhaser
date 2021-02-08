@@ -1,0 +1,13 @@
+after getting the github repository:
+
+INSTALLATION
+1. From the terminal
+>> npm install express
+>> npm install cors
+
+RUNNING
+1. From the terminal
+>> node server.js
+
+2. Open in browser
+index.html
