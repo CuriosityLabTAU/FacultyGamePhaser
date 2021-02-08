@@ -6,6 +6,8 @@ class GameScreen extends Phaser.Scene {
     };
 
     preload (){
+        this.load.setBaseURL('http://localhost:3000');
+
         for(let f=0;f<gamestate.subjects.length;f++) {
 //            this.load.atlas(gamestate.subjects[f]+ "img", "images/dino.png", "images/dino.json");
             let the_name = items['list'][gamestate.subjects[f]]['img']["1"].replace('_1.png', '');

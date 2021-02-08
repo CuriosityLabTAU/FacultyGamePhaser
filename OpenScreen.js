@@ -3,6 +3,8 @@ class OpenScreen extends Phaser.Scene {
 		super({ key: 'OpenScreen' });
 	};
 	preload(){
+//	    this.load.crossOrigin = "anonymous";
+	    this.load.setBaseURL('http://localhost:3000');
         this.load.image("button1", "assets/blue_button01.png");
         this.load.image("button2", "assets/blue_button02.png");
         this.load.image("button3", "assets/blue_button03.png");
