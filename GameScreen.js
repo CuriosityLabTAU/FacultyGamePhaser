@@ -16,38 +16,53 @@ class GameScreen extends Phaser.Scene {
             let the_json = "assets/" + items['study'] + "/" + the_name + ".json";
             this.load.atlas(gamestate.subjects[f]+ "img", the_img, the_json);
             for(let a=1;a<9;a++) {
-                this.load.audio(gamestate.subjects[f] + a, "assets/" + items['study'] + "/" + items['list'][gamestate.subjects[f]]['text'][a]['audio'])
+                this.load.audio(gamestate.subjects[f] + '_' + a, "assets/" + items['study'] + "/" + items['list'][gamestate.subjects[f]]['text'][a]['audio']);
             }
         }
         this.load.image("background", "assets/" + items['study'] + "/background.png")
     }
 
     create() {
+        game_logger('start', 'game', 'now');
+
         this.time.addEvent({
             delay: 120000,
             callback: ()=> {
+                game_end();
                 this.scene.stop("GameScreen");
                 this.scene.start("CloseScreen");
             }
         });
-//
-        this.add.image(400, 300, 'background').setScale(1.7,1.6);
 
-        var style = { font: "bold 24px Arial", fill: "#000", boundsAlignH: "center", boundsAlignV: "middle", wordWrap: true, wordWrapWidth: 300, maxLines: 2, align: "center" };
-        text = this.add.text(0, 520, "", style);
+        this.add.image(
+            window.innerWidth * window.devicePixelRatio / 2,
+            window.innerHeight * window.devicePixelRatio / 2, 'background')
+            .setScale(
+                window.innerWidth * window.devicePixelRatio / 1068,
+                window.innerHeight * window.devicePixelRatio / 667);
+
+        var font_size = window.innerWidth * window.devicePixelRatio * 0.02;
+        var style = { font: "bold " + font_size + "px Arial", fill: "#000", boundsAlignH: "center", boundsAlignV: "middle", wordWrap: true, wordWrapWidth: 300, maxLines: 3, align: "center" };
+        text = this.add.text(window.innerWidth * window.devicePixelRatio * 0.1, window.innerHeight * window.devicePixelRatio * 0.8, "", style);
 
         gamestate.sub_img = [];
         for(let f=0;f<gamestate.subjects.length;f++) {
             gamestate.sub_img.push(this.physics.add.sprite(config['width'] * gamestate.sub_x[f], config['height'] * gamestate.sub_y[f], gamestate.subjects[f] + "img"))
-            gamestate.sub_img[f].displayWidth= 150
-            gamestate.sub_img[f].displayHeight=100
+            gamestate.sub_img[f].displayWidth= window.innerWidth * window.devicePixelRatio * 0.15;
+            gamestate.sub_img[f].displayHeight=window.innerHeight * window.devicePixelRatio * 0.15
             var sub_a = []
             for(let a=1;a<9;a++) {
-                sub_a.push(this.sound.add(gamestate.subjects[f] + a));
+                sub_a.push(this.sound.add(gamestate.subjects[f] + '_' + a));
+
                 sub_a[a-1].once('complete', sound_ended);
             }
             gamestate.sub_audio.push(sub_a);
             gamestate.sub_audio_counter.push(0);
+
+            gamestate.sub_text.push(
+                this.add.text(gamestate.sub_img[f].x - (items['list'][gamestate.subjects[f]]['label'].length * font_size / 4.0),
+                gamestate.sub_img[f].y + gamestate.sub_img[f].displayHeight / 2.0,
+                items['list'][gamestate.subjects[f]]['label'], style))
         }
         for(let f=0;f<gamestate.subjects.length;f++) {
             gamestate.sub_img[f].setInteractive();
@@ -56,8 +71,15 @@ class GameScreen extends Phaser.Scene {
                 gameObject.setTint(0xff0000);
              });
              this.input.on('drag', function (pointer, gameObject, dragX, dragY) {
+                var dx = gameObject.x - dragX;
+                var dy = gameObject.y - dragY
+
                 gameObject.x = dragX;
                 gameObject.y = dragY;
+
+                var f = gameObject.getData('name');
+                gamestate.sub_text[f].x -= dx;
+                gamestate.sub_text[f].y -= dy;
              });
              this.input.on('dragend', function (pointer, gameObject) {
                 gameObject.clearTint();

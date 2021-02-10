@@ -1,7 +1,7 @@
 var config = {
     type: Phaser.AUTO,
-    width: 800,
-    height: 600,
+    width: window.innerWidth * window.devicePixelRatio, //800,
+    height: window.innerHeight * window.devicePixelRatio, //600,
     physics: {
         default: 'arcade',
         arcade: {
@@ -9,7 +9,7 @@ var config = {
             debug: false
         }
     },
-    scene: [OpenScreen, GameScreen, CloseScreen],
+    scene: [GameScreen, CloseScreen], //OpenScreen
     audio: {
         disableWebAudio: true
     }

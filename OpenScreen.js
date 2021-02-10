@@ -10,6 +10,7 @@ class OpenScreen extends Phaser.Scene {
         this.load.image("button3", "assets/blue_button03.png");
     };
     create(){
+
         this.add.text(200,200,"CLICK TO START", {fontSize: 38});
         this.add.image(350,260,"button1").setInteractive();
         this.input.on('pointerup', () => {

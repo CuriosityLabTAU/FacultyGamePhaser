@@ -4,6 +4,9 @@ INSTALLATION
 1. From the terminal
 >> npm install express
 >> npm install cors
+>> npm install strftime
+>> npm install @azerion/phaser-input --save-dev
+
 
 RUNNING
 1. From the terminal

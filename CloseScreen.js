@@ -7,7 +7,8 @@ class CloseScreen extends Phaser.Scene {
     };
 
     create(){
-        this.add.text(200,200,"THE END", {fontSize: 38});
+        this.add.text(window.innerWidth * window.devicePixelRatio / 2,
+            window.innerHeight * window.devicePixelRatio / 2, "THE END", {fontSize: 38});
     };
     update()
     {};
