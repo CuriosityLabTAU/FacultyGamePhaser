@@ -1,4 +1,3 @@
-START npm init
 START npm install express
 START npm install cors
 START npm install strftime
