@@ -454,7 +454,7 @@ the_path = './data/'    # Goren
 
 # option 2: read all * log files in "the_path"
 the_files = [the_path + f for f in listdir(the_path) if isfile(join(the_path, f)) and 'log' in f]
-
+print(the_files)
 # This is the game duration
 exp_duration = 120.0
 

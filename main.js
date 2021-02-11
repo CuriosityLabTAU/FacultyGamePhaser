@@ -9,10 +9,10 @@ var config = {
             debug: false
         }
     },
-    scene: [GameScreen, CloseScreen], //OpenScreen
-    audio: {
-        disableWebAudio: true
-    }
+    scene: [], //[GameScreen, CloseScreen], //OpenScreen
+//    audio: {
+//        disableWebAudio: fal
+//    }
 };
 
 var game = new Phaser.Game(config);

@@ -28,9 +28,7 @@ class GameScreen extends Phaser.Scene {
         this.time.addEvent({
             delay: 120000,
             callback: ()=> {
-                game_end();
-                this.scene.stop("GameScreen");
-                this.scene.start("CloseScreen");
+                game_end(this);
             }
         });
 
@@ -53,7 +51,6 @@ class GameScreen extends Phaser.Scene {
             var sub_a = []
             for(let a=1;a<9;a++) {
                 sub_a.push(this.sound.add(gamestate.subjects[f] + '_' + a));
-
                 sub_a[a-1].once('complete', sound_ended);
             }
             gamestate.sub_audio.push(sub_a);
@@ -118,3 +115,5 @@ class GameScreen extends Phaser.Scene {
         }
     };
 };
+
+game.scene.add('GameScreen', GameScreen, true);

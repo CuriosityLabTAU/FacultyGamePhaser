@@ -13,3 +13,5 @@ class CloseScreen extends Phaser.Scene {
     update()
     {};
 }
+
+game.scene.add('CloseScreen', CloseScreen, false);

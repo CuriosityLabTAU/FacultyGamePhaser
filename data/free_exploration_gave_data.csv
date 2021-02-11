@@ -1,0 +1,3 @@
+,subject_number,subject_id,t0,total_listenning_time,normalized_total_listenning_time,Multi_discipline_entropy,transition_entropy,wavs_amount,listening_per_faculty_men,listening_per_faculty_ges,listening_per_faculty_muz
+0,1.0,9.0,719.9833333333333,0.19166666666666668,-0.0002665801247131366,-1.0,-1.0,3.0,1.0,1.0,1.0
+1,2.0,8.0,0.008333333333333333,0.3333333333333333,0.33613445378151263,0.4181656600790516,-1.0,5.0,3.0,2.0,0.0

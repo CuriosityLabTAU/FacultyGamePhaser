@@ -20,34 +20,31 @@ console.log(gamestate);
         gamestate.animationObject= null;
         gamestate.animationTracker= 0;
         gamestate.sub_music = [];
+        gamestate.the_end = false;
 
         // for logging
-        gamestate.game_sequence = [];
+        gamestate.game_sequence = {};
 
 function onObjectClicked(pointer,gameObject) {
     if (!is_someone_playing()) {
-        console.log('gameObject', gameObject);
         var f = gameObject.getData('name');
 
         game_logger('down', gamestate.subjects[f], {'pos': '(' + gameObject.x + ',' + gameObject.y + ')'});
 
         gamestate.animationTracker= f;
         gamestate.animationObject= gameObject;
-        console.log('f', f);
-        console.log('animate', gamestate.subjects[f]+"animate");
         gameObject.play(gamestate.subjects[f]+"animate",true)
 
         var a = gamestate.sub_audio_counter[f];
-        if (a < 9) {
+        if (a < 8) {
+            console.log('should be playing now', items['list'][gamestate.subjects[f]]['text'][a+1]['audio'].toString().slice(0, -4));
             gamestate.sub_audio[f][a].play();
             game_logger('play', gamestate.subjects[f], items['list'][gamestate.subjects[f]]['text'][a+1]['audio']);
 
-            is_playing = [gameObject.getData('name'), a];
+            gamestate.is_playing = [gameObject.getData('name'), a];
             gamestate.sub_audio_counter[f] += 1;
+            text.setText(items['list'][gamestate.subjects[f]]['text'][a+1]["text"]);
         }
-        console.log(items['list'][gamestate.subjects[f]]);
-        console.log('a', a+1);
-        text.setText(items['list'][gamestate.subjects[f]]['text'][a+1]["text"]);
 
     }
 };
@@ -82,33 +79,80 @@ function sound_ended(sound, x) {
     var the_subject = the_key[0];
     var f = gamestate.subjects.findIndex((e) => e === the_subject);
     var a = parseInt(the_key[1]);
-    console.log('the_key', the_key);
-
     game_logger('stop', the_subject, items['list'][the_subject]['text'][a]['audio']);
 
-    gamestate.sub_img[f].play(the_subject+"stop",true)
-
-    is_playing = null;
-    text.setText("");
-
-
-
+    try{
+        gamestate.sub_img[f].play(the_subject+"stop",true)
+        gamestate.is_playing = null;
+        text.setText("");
+        if(this_is_the_end()) {
+            log_data();
+        }
+    } catch {
+        console.log('probably end game');
+    }
 };
 
-async function game_logger(action, obj, comment) {
+function game_logger(action, obj, comment) {
     let data = {
         'action': action,
         'obj': obj,
-        'comment': comment
+        'comment': comment,
     }
-    const response = await fetch(server_url + "/log/" + JSON.stringify(data));
+    var now = new Date();
+    var now_str = (now*1000).toString();
+    var t = 0;
+    while (gamestate.game_sequence.hasOwnProperty(now_str)) {
+        t += 1;
+        now_str = (now*1000 + t).toString();
+    }
+    gamestate.game_sequence[now_str] = data;
+    console.log(gamestate.game_sequence);
+}
+
+function this_is_the_end() {
+    console.log('this is the end', gamestate.is_playing, gamestate.the_end)
+    if(gamestate.is_playing === null && gamestate.the_end) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function game_end(scene) {
+    console.log('game end');
+    gamestate.the_end = true;
+    gamestate.game_scene = scene;
+    if(this_is_the_end()) {
+        log_data();
+    }
+}
+
+async function log_data(){
+    console.log('log data');
+    game_logger('end', 'game', 'now');
+
+    const response = await fetch(server_url + "/log/" + JSON.stringify(gamestate.game_sequence));
     const myres = await response.text();
+    console.log(myres);
+
+    gamestate.game_scene.scene.stop("GameScreen");
+    gamestate.game_scene.scene.start("CloseScreen");
+
     return myres;
 }
 
-async function game_end() {
-    const response = await fetch(server_url + "/end");
-    const myres = await response.text();
-    console.log(myres);
-    return myres;
-}
+//    for(let f=0;f< gamestate.subjects.length;f++) {
+//        for(let a=1;a<9;a++) {
+//            if (gamestate.sub_audio[f][a-1].isPlaying) {
+//                game_logger('stop', gamestate.subjects[f], items['list'][gamestate.subjects[f]]['text'][a]['audio']);
+//            }
+//        }
+//    }
+
+
+//    const response = await fetch(server_url + "/end");
+//    const myres = await response.text();
+//    console.log(myres);
+//    return myres;
+//}
