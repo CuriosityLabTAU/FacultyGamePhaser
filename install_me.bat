@@ -1,4 +1,5 @@
-npm install express
-npm install cors
-npm install strftime
-npm install @azerion/phaser-input --save-dev
+START npm init
+START npm install express
+START npm install cors
+START npm install strftime
+START npm install @azerion/phaser-input --save-dev
