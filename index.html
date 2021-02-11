@@ -25,7 +25,7 @@
   <!-- [if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif] -->
 
 <script>
-    const server_url = "http:localhost:3000";
+    const server_url = "http://localhost:3000";
     async function send_start(pnumber) {
         const response = await fetch(server_url + "/start/" + JSON.stringify(pnumber));
         const myres = await response.text();
@@ -34,9 +34,10 @@
 
     function start() {
         var pnumber = document.getElementById("pnumber").value;
-        var res = send_start(pnumber);
-        console.log(res);
-        window.open('start.html', '_self');
+        send_start(pnumber).then((res) => {
+          console.log(res);
+          window.open('start.html', '_self');
+        });
     }
 </script>
 

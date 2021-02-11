@@ -7,6 +7,7 @@ var app = express();
 var path = require('path');
 
 var the_log = {};
+var start_time = null;
 
 app.use(cors())
 app.use(express.static('assets'))
@@ -19,7 +20,8 @@ app.get('/assets/*', (req, res) => {
 
 function get_current_time() {
     var now = new Date();
-    var the_time = strftime('%Y_%m_%d_%H_%M_%S_', now) + (now*1000)
+    var ms = (now*1000).toString().slice(-9, -3);
+    var the_time = strftime('%Y_%m_%d_%H_%M_%S_', now) + ms;
     return the_time;
 }
 
@@ -34,11 +36,15 @@ app.get('/log/*', (req, res) => {
 })
 
 app.get('/start/*', (req, res) => {
+    start_time = get_current_time()
+
     var participant_number = req.path.replace('/start/', '');
-    the_log = {
-        'participant': participant_number.split('%22').join(''),
-        'start_time': get_current_time()
-    };
+    add_log({
+        'action': 'text',
+        'obj': 'subject',
+        'comment': participant_number.split('%22').join('')
+    })
+
     console.log(the_log);
     start.push(get_current_time());
 
@@ -77,7 +83,7 @@ function add_log(log) {
 }
 
 function save_log() {
-    fs.writeFile('data/' + the_log['start_time'] + '.json', JSON.stringify(the_log), (err) => {
+    fs.writeFile('data/' + start_time + '.log', JSON.stringify(the_log), (err) => {
         if (err) throw err;
         console.log('The file has been saved!');
     });

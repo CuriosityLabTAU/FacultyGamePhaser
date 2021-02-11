@@ -2,6 +2,7 @@ after getting the github repository:
 
 INSTALLATION
 1. From the terminal
+>> npm init
 >> npm install express
 >> npm install cors
 >> npm install strftime
