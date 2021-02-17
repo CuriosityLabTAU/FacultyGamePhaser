@@ -10,7 +10,14 @@ class GameScreen extends Phaser.Scene {
 
         for(let f=0;f<gamestate.subjects.length;f++) {
 //            this.load.atlas(gamestate.subjects[f]+ "img", "images/dino.png", "images/dino.json");
-            let the_name = items['list'][gamestate.subjects[f]]['img']["1"].replace('_1.png', '');
+            let the_name = '';
+            if (items['list'][gamestate.subjects[f]]['img'].hasOwnProperty("0")) {
+                gamestate.sub_animate.push(-1);
+                the_name = items['list'][gamestate.subjects[f]]['img']["0"];
+            } else {
+                gamestate.sub_animate.push(0);
+                the_name = items['list'][gamestate.subjects[f]]['img']["1"].replace('_1.png', '');
+            }
             console.log(the_name);
             let the_img = "assets/" + items['study'] + "/" + the_name + ".png";
             let the_json = "assets/" + items['study'] + "/" + the_name + ".json";
@@ -91,7 +98,7 @@ class GameScreen extends Phaser.Scene {
             key: gamestate.subjects[f]+"animate",
             frames: this.anims.generateFrameNames(gamestate.subjects[f]+"img", {start: 0, end: 9, zeropad: 1, prefix: "Idle_", suffix: ".png"}),
             frameRate: 10, //8,
-            repeat: 0 //-1
+            repeat: gamestate.sub_animate[f]
             });
 
             this.anims.create({

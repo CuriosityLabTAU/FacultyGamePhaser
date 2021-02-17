@@ -13,6 +13,7 @@ console.log(gamestate);
         gamestate.sub_y = [0.6, 0.2, 0.2, 0.2, 0.6, 0.6, 0.6, 0.2, 0.4];
 
         gamestate.sub_img = [];
+        gamestate.sub_animate = [];
         gamestate.sub_audio = [];
         gamestate.sub_text = [];
         gamestate.sub_audio_counter = [];
