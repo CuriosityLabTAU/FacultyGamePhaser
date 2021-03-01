@@ -1,8 +1,7 @@
 console.log(items);
 let server_url = 'http://localhost:3000'
-
+var heardFacts= [];
 var gamestate= {};
-gamestate= {};
 
 gamestate.subjects = Object.keys(items['list']);
 console.log(gamestate);
@@ -41,7 +40,7 @@ function onObjectClicked(pointer,gameObject) {
             console.log('should be playing now', items['list'][gamestate.subjects[f]]['text'][a+1]['audio'].toString().slice(0, -4));
             gamestate.sub_audio[f][a].play();
             game_logger('play', gamestate.subjects[f], items['list'][gamestate.subjects[f]]['text'][a+1]['audio']);
-
+            heardFacts.push(items['list'][gamestate.subjects[f]]['text'][a+1]['audio'].toString().slice(0, -4));
             gamestate.is_playing = [gameObject.getData('name'), a];
             gamestate.sub_audio_counter[f] += 1;
             text.setText(items['list'][gamestate.subjects[f]]['text'][a+1]["text"]);

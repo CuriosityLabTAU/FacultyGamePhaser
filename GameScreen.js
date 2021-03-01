@@ -33,8 +33,10 @@ class GameScreen extends Phaser.Scene {
         game_logger('start', 'game', 'now');
 
         this.time.addEvent({
-            delay: 120000,
+            delay: 60000,
             callback: ()=> {
+                // save the facts that were listened to in session storage to transfer to questionnaire
+                sessionStorage.setItem("questions", JSON.stringify(heardFacts));
                 game_end(this);
             }
         });

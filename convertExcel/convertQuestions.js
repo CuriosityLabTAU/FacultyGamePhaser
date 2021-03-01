@@ -1,5 +1,5 @@
 //imports
-const fs= require("fs");
+const fsLibrary= require("fs");
 const { stringify } = require("querystring");
 const xlsx= require("xlsx");
 
@@ -12,10 +12,9 @@ function LoadExcel(filename){
 
 // load the file and save the data 
 var data= LoadExcel("questions.xlsx");
-var output= []
+var output= {};
 data.map(function(record){
-    output.push({
-        fact: record.fact,
+    output[record.fact]= {
         question: record.question,
         audio: record.audio,
         answers: {
@@ -25,15 +24,13 @@ data.map(function(record){
             d: record.d
         },
         correctAnswer: record.correctAnswer
-    })
+    };
 });
-// write the variable in the js file
-fs.writeFile("./questions.js",JSON.stringify(output), err=>{
-    if(err){
-        console.log(err); 
-    }
-    else{
-        console.log("file written successfully"); // make sure the file was written
-    } 
+// write the variable in the js file 
+fsLibrary.writeFile('converted.js', "var allQuestions="+JSON.stringify(output), (error) => { 
+      
+    // In case of a error throw err exception. 
+    if (error) throw err; 
 });
+
 
