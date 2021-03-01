@@ -63,7 +63,7 @@ data.map(function(record){
 });
 console.log(items);
  // write the variable in the js file
-fs.writeFile("./hebrew.js",JSON.stringify(items), err=>{
+fs.writeFile("./hebrew.js","var items="+ JSON.stringify(items), err=>{
     if(err){
         console.log(err); 
     }
