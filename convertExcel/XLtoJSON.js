@@ -51,7 +51,7 @@ data.map(function(record){
 });
 
 // write the variable in the js file
-fs.writeFile("./english.js",JSON.stringify(items), err=>{
+fs.writeFile("./english.js","var items="+JSON.stringify(items), err=>{
     if(err){
         console.log(err); 
     }

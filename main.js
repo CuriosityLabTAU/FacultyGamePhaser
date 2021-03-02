@@ -1,5 +1,8 @@
 var config = {
     type: Phaser.AUTO,
+    scale: {
+        mode: Phaser.Scale.FIT
+    },
     width: window.innerWidth * window.devicePixelRatio, //800,
     height: window.innerHeight * window.devicePixelRatio, //600,
     physics: {
