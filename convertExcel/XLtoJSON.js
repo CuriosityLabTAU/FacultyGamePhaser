@@ -39,7 +39,9 @@ data.map(function(record){
 
     for(let i=1; i<16; i++){
         num= i.toString()
-        fact= record[num];
+        if (record[num]!=undefined){
+            fact= record[num].replaceAll('\\n','\n');
+        };
         items["list"][category]["text"][num] = {
             'text': fact,
             'audio': category+num+".wav"
@@ -51,7 +53,7 @@ data.map(function(record){
 });
 
 // write the variable in the js file
-fs.writeFile("./english.js","var items="+JSON.stringify(items), err=>{
+fs.writeFile("../english.js","var items="+JSON.stringify(items), err=>{
     if(err){
         console.log(err); 
     }
