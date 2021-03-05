@@ -44,7 +44,10 @@
             submittedAnswer: userAnswer
           };
         });
-        console.log(answerLog)
+        // add answers to existing log
+        game_sequence["answerLog"]= answerLog;
+        console.log(game_sequence)
+        window.open('end.html', '_self');
       };
       // function to jump between slides
       function showSlide(n) {

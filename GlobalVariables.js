@@ -1,29 +1,22 @@
-console.log(items);
 let server_url = 'http://localhost:3000'
 var heardFacts= [];
 var gamestate= {};
-
 gamestate.subjects = Object.keys(items['list']);
-console.log(gamestate);
+gamestate.sub_x = [0.1, 0.1, 0.35, 0.65, 0.35, 0.65, 0.9, 0.9, 0.5];
+gamestate.sub_y = [0.6, 0.2, 0.2, 0.2, 0.6, 0.6, 0.6, 0.2, 0.4];
+gamestate.sub_img = [];
+gamestate.sub_animate = [];
+gamestate.sub_audio = [];
+gamestate.sub_text = [];
+gamestate.sub_audio_counter = [];
+gamestate.is_playing = null;
+gamestate.animationObject= null;
+gamestate.animationTracker= 0;
+gamestate.sub_music = [];
+gamestate.the_end = false;
 
-//        gamestate.subjects = ['animals', 'history', 'internet', 'environment', 'music', 'space', 'media', 'food', 'body'];
-//        gamestate.wav_subjects = ['animals', 'history', 'internet', 'environment', 'music', 'space', 'media', 'food', 'body'];
-        gamestate.sub_x = [0.1, 0.1, 0.35, 0.65, 0.35, 0.65, 0.9, 0.9, 0.5];
-        gamestate.sub_y = [0.6, 0.2, 0.2, 0.2, 0.6, 0.6, 0.6, 0.2, 0.4];
-
-        gamestate.sub_img = [];
-        gamestate.sub_animate = [];
-        gamestate.sub_audio = [];
-        gamestate.sub_text = [];
-        gamestate.sub_audio_counter = [];
-        gamestate.is_playing = null;
-        gamestate.animationObject= null;
-        gamestate.animationTracker= 0;
-        gamestate.sub_music = [];
-        gamestate.the_end = false;
-
-        // for logging
-        gamestate.game_sequence = {};
+// for logging
+gamestate.game_sequence = {};
 
 function onObjectClicked(pointer,gameObject) {
     if (!is_someone_playing()) {
@@ -36,11 +29,12 @@ function onObjectClicked(pointer,gameObject) {
         gameObject.play(gamestate.subjects[f]+"animate",true)
 
         var a = gamestate.sub_audio_counter[f];
-        if (a < 8) {
+        if (a < 13) {
             console.log('should be playing now', items['list'][gamestate.subjects[f]]['text'][a+1]['audio'].toString().slice(0, -4));
             gamestate.sub_audio[f][a].play();
             game_logger('play', gamestate.subjects[f], items['list'][gamestate.subjects[f]]['text'][a+1]['audio']);
-            heardFacts.push(items['list'][gamestate.subjects[f]]['text'][a+1]['audio'].toString().slice(0, -4));
+            var num= a+1
+            heardFacts.push(gamestate.subjects[f]+num.toString());
             gamestate.is_playing = [gameObject.getData('name'), a];
             gamestate.sub_audio_counter[f] += 1;
             text.setText(items['list'][gamestate.subjects[f]]['text'][a+1]["text"]);

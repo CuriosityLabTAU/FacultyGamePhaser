@@ -16,6 +16,7 @@
           var myQuestions= []
           var questions= JSON.parse(sessionStorage.getItem("questions"));
           questions.forEach(element=> myQuestions.push(allQuestions[element]));
+          var game_sequence= JSON.parse(sessionStorage.getItem("logger"));
     </script>
     <script src="./buildQuestionnaire.js"></script>
   </body>

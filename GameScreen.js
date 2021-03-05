@@ -22,7 +22,7 @@ class GameScreen extends Phaser.Scene {
             let the_img = "assets/" + items['study'] + "/" + the_name + ".png";
             let the_json = "assets/" + items['study'] + "/" + the_name + ".json";
             this.load.atlas(gamestate.subjects[f]+ "img", the_img, the_json);
-            for(let a=1;a<9;a++) {
+            for(let a=1;a<13;a++) {
                 this.load.audio(gamestate.subjects[f] + '_' + a, "assets/" + items['study'] + "/" + items['list'][gamestate.subjects[f]]['text'][a]['audio']);
             }
         }
@@ -33,10 +33,11 @@ class GameScreen extends Phaser.Scene {
         game_logger('start', 'game', 'now');
 
         this.time.addEvent({
-            delay: 7000000,
+            delay: 10000,
             callback: ()=> {
                 // save the facts that were listened to in session storage to transfer to questionnaire
                 sessionStorage.setItem("questions", JSON.stringify(heardFacts));
+                sessionStorage.setItem("logger", JSON.stringify(gamestate.game_sequence));
                 game_end(this);
             }
         });
@@ -58,7 +59,7 @@ class GameScreen extends Phaser.Scene {
             gamestate.sub_img[f].displayWidth= window.innerWidth * window.devicePixelRatio * 0.15;
             gamestate.sub_img[f].displayHeight=window.innerHeight * window.devicePixelRatio * 0.15
             var sub_a = []
-            for(let a=1;a<9;a++) {
+            for(let a=1;a<13;a++) {
                 sub_a.push(this.sound.add(gamestate.subjects[f] + '_' + a));
                 sub_a[a-1].once('complete', sound_ended);
             }

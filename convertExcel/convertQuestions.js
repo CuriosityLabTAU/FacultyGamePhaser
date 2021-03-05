@@ -27,10 +27,12 @@ data.map(function(record){
     };
 });
 // write the variable in the js file 
-fsLibrary.writeFile('converted.js', "var allQuestions="+JSON.stringify(output), (error) => { 
-      
-    // In case of a error throw err exception. 
-    if (error) throw err; 
+fsLibrary.writeFile('../questions.js', "var allQuestions="+JSON.stringify(output), (err) => {
+    if(err){
+        console.log(err);
+    }
+    else{
+        console.log("file written successfully"); // make sure the file was written
+    }
 });
-
 
