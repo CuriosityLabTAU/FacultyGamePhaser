@@ -15,7 +15,7 @@ class GameScreen extends Phaser.Scene {
                 gamestate.sub_animate.push(-1);
                 the_name = items['list'][gamestate.subjects[f]]['img']["0"];
             } else {
-                gamestate.sub_animate.push(0);
+                gamestate.sub_animate.push(-1);
                 the_name = items['list'][gamestate.subjects[f]]['img']["1"].replace('_1.png', '');
             }
             console.log(the_name);
@@ -99,7 +99,7 @@ class GameScreen extends Phaser.Scene {
         for(let f=0;f<gamestate.subjects.length;f++){
             this.anims.create({
             key: gamestate.subjects[f]+"animate",
-            frames: this.anims.generateFrameNames(gamestate.subjects[f]+"img", {start: 0, end: 9, zeropad: 1, prefix: "Idle_", suffix: ".png"}),
+            frames: this.anims.generateFrameNames(gamestate.subjects[f]+"img", {start: 2, end: 12, zeropad: 1, prefix: "Idle_", suffix: ".png"}),
             frameRate: 10, //8,
             repeat: gamestate.sub_animate[f]
             });
