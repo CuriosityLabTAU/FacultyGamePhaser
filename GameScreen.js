@@ -33,7 +33,7 @@ class GameScreen extends Phaser.Scene {
         game_logger('start', 'game', 'now');
 
         this.time.addEvent({
-            delay: 10000,
+            delay: 120000,
             callback: ()=> {
                 // save the facts that were listened to in session storage to transfer to questionnaire
                 sessionStorage.setItem("questions", JSON.stringify(heardFacts));
@@ -52,12 +52,19 @@ class GameScreen extends Phaser.Scene {
         var font_size = window.innerWidth * window.devicePixelRatio * 0.02;
         var style = { font: "bold " + font_size + "px Arial", fill: "#000", boundsAlignH: "center", boundsAlignV: "middle", wordWrap: true, wordWrapWidth: 300, maxLines: 3, align: "center" };
         text = this.add.text(window.innerWidth * window.devicePixelRatio * 0.1, window.innerHeight * window.devicePixelRatio * 0.8, "", style);
-
+        if (items["study"]=="english"){
+            var imgRatio= 0.30;
+            var fr= 4;
+        }
+        if (items["study"]=="dutch"){
+            var imgRatio= 0.15;
+            var fr= 10;
+        };
         gamestate.sub_img = [];
         for(let f=0;f<gamestate.subjects.length;f++) {
             gamestate.sub_img.push(this.physics.add.sprite(config['width'] * gamestate.sub_x[f], config['height'] * gamestate.sub_y[f], gamestate.subjects[f] + "img"))
             gamestate.sub_img[f].displayWidth= window.innerWidth * window.devicePixelRatio * 0.15;
-            gamestate.sub_img[f].displayHeight=window.innerHeight * window.devicePixelRatio * 0.15
+            gamestate.sub_img[f].displayHeight=window.innerHeight * window.devicePixelRatio * imgRatio;
             var sub_a = []
             for(let a=1;a<13;a++) {
                 sub_a.push(this.sound.add(gamestate.subjects[f] + '_' + a));
@@ -75,7 +82,7 @@ class GameScreen extends Phaser.Scene {
             gamestate.sub_img[f].setInteractive();
             this.input.setDraggable(gamestate.sub_img[f]);
             this.input.on('dragstart', function (pointer, gameObject) {
-                gameObject.setTint(0xff0000);
+                gameObject.setTint(0xffffff); //0xffff
              });
              this.input.on('drag', function (pointer, gameObject, dragX, dragY) {
                 var dx = gameObject.x - dragX;
@@ -99,8 +106,8 @@ class GameScreen extends Phaser.Scene {
         for(let f=0;f<gamestate.subjects.length;f++){
             this.anims.create({
             key: gamestate.subjects[f]+"animate",
-            frames: this.anims.generateFrameNames(gamestate.subjects[f]+"img", {start: 2, end: 12, zeropad: 1, prefix: "Idle_", suffix: ".png"}),
-            frameRate: 10, //8,
+            frames: this.anims.generateFrameNames(gamestate.subjects[f]+"img", {start: 0, end: 12, zeropad: 1, prefix: "Idle_", suffix: ".png"}),
+            frameRate: fr,//4, //10,
             repeat: gamestate.sub_animate[f]
             });
 
