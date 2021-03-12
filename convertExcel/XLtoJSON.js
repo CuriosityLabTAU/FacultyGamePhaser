@@ -32,7 +32,7 @@ data.map(function(record){
     items["list"][category]= {
         "label": category,
         "pos": position,
-        "img": {"1":"dino_1.png"}, // the img obj can be replaced in both files and contain only img1
+        "img": {"1":category+"_1.png"}, // the img obj can be replaced in both files and contain only img1
         "text": {}
     };
     k=k+1;
