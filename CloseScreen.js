@@ -22,7 +22,13 @@ class CloseScreen extends Phaser.Scene {
         this.input.on('pointerup', () => {
             console.log("Clicked");
             this.scene.stop('CloseScreen');
-            window.open('questionnaire.html', '_self');
+            if (items["study"]=="english"){
+                window.open('questionnaire.html', '_self');
+            };
+            if (items["study"]=="hebrew"){
+                window.open('Hquestionnaire.html', '_self');
+            }
+            
          });
     };
     update()

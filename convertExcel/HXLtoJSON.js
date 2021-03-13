@@ -44,13 +44,16 @@ data.map(function(record){
     items["list"][category]= {
         "label": hebrewName, //current label is hebrew name. if necessary switch to "category" (the name in english)
         "pos": position,
-        "img": {"1":"dino"},
+        "img": {"1":record.categoryE+"_1.png"},
         "text": {}
     };
     k=k+1;
 
-    for(let i=1; i<11; i++){
+    for(let i=1; i<14; i++){
         num= i.toString();
+        if (record[num]!=undefined){
+            fact= record[num].replaceAll('\\n','\n');
+        };
         fact= record[num]; // if necessary write: reverseSentence(record[num])
         items["list"][category]["text"][num] = {
             'text': fact,
@@ -63,7 +66,7 @@ data.map(function(record){
 });
 console.log(items);
  // write the variable in the js file
-fs.writeFile("./hebrew.js","var items="+ JSON.stringify(items), err=>{
+fs.writeFile("../hebrew.js","var items="+ JSON.stringify(items), err=>{
     if(err){
         console.log(err); 
     }

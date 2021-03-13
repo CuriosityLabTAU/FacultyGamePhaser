@@ -33,7 +33,7 @@ class GameScreen extends Phaser.Scene {
         game_logger('start', 'game', 'now');
 
         this.time.addEvent({
-            delay: 120000,
+            delay: 10000,
             callback: ()=> {
                 // save the facts that were listened to in session storage to transfer to questionnaire
                 sessionStorage.setItem("questions", JSON.stringify(heardFacts));
@@ -52,10 +52,10 @@ class GameScreen extends Phaser.Scene {
         var font_size = window.innerWidth * window.devicePixelRatio * 0.02;
         var style = { font: "bold " + font_size + "px Arial", fill: "#000", boundsAlignH: "center", boundsAlignV: "middle", wordWrap: true, wordWrapWidth: 300, maxLines: 3, align: "center" };
         text = this.add.text(window.innerWidth * window.devicePixelRatio * 0.1, window.innerHeight * window.devicePixelRatio * 0.8, "", style);
-        if (items["study"]=="english"){
+        if (items["study"]=="english"||items["study"]=="hebrew"){
             var imgRatio= 0.30;
             var fr= 4;
-        }
+        };
         if (items["study"]=="dutch"){
             var imgRatio= 0.15;
             var fr= 10;

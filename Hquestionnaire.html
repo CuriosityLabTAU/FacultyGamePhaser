@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+	  <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css">
+	</head>
+  <body>
+    <div class="quiz-container">
+        <div id="quiz"></div>
+    </div>
+    <button id="next">Next Question</button>
+    <button id="submit">Submit Quiz</button>
+    <div id="results"></div>
+
+    <script src="./hebrewQuestions.js"></script>
+    <script>
+          var myQuestions= []
+          var questions= JSON.parse(sessionStorage.getItem("questions"));
+          questions.forEach(element=> myQuestions.push(allQuestions[element]));
+          var game_sequence= JSON.parse(sessionStorage.getItem("logger"));
+    </script>
+    <script src="./buildQuestionnaire.js"></script>
+  </body>
+</html>
