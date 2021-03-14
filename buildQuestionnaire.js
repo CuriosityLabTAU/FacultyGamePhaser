@@ -47,7 +47,12 @@
         // add answers to existing log
         game_sequence["answerLog"]= answerLog;
         console.log(game_sequence)
-        window.open('end.html', '_self');
+        if (language=="english"){
+          window.open('end.html', '_self');
+        };
+        if (language=="hebrew"){
+          window.open('endHebrew.html', '_self');
+        }
       };
       // function to jump between slides
       function showSlide(n) {

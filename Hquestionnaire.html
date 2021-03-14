@@ -1,14 +1,15 @@
 <!doctype html>
-<html lang="en">
+<html lang="he">
   <head>
+    <meta charset="UTF-8">
 	  <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css">
 	</head>
-  <body>
+  <body dir="rtl">
     <div class="quiz-container">
         <div id="quiz"></div>
     </div>
-    <button id="next">Next Question</button>
-    <button id="submit">Submit Quiz</button>
+    <button id="next">לשאלה הבאה</button>
+    <button id="submit">סיום</button>
     <div id="results"></div>
 
     <script src="./hebrewQuestions.js"></script>
@@ -17,6 +18,7 @@
           var questions= JSON.parse(sessionStorage.getItem("questions"));
           questions.forEach(element=> myQuestions.push(allQuestions[element]));
           var game_sequence= JSON.parse(sessionStorage.getItem("logger"));
+          var language="hebrew";
     </script>
     <script src="./buildQuestionnaire.js"></script>
   </body>
