@@ -27,7 +27,19 @@
       };
 
       var answerLog= {};
-      function saveAnswers(){
+      function endGame(){
+        // add answers to existing log
+        game_sequence["answerLog"]= answerLog;
+        console.log(game_sequence)
+        if (language=="english"){
+          window.open('end.html', '_self');
+        };
+        if (language=="hebrew"){
+          window.open('endHebrew.html', '_self');
+        }
+      };
+
+      function saveAnswer(){
         // gather answer containers from quiz
         const answerContainers = quizContainer.querySelectorAll('.answers');
         myQuestions.forEach( (currentQuestion, questionNumber) => {
@@ -44,15 +56,6 @@
             submittedAnswer: userAnswer
           };
         });
-        // add answers to existing log
-        game_sequence["answerLog"]= answerLog;
-        console.log(game_sequence)
-        if (language=="english"){
-          window.open('end.html', '_self');
-        };
-        if (language=="hebrew"){
-          window.open('endHebrew.html', '_self');
-        }
       };
       // function to jump between slides
       function showSlide(n) {
@@ -73,13 +76,19 @@
 
       // callback function for "next question" button
       function showNextSlide() {
-        showSlide(currentSlide + 1);
+        if (answerLog[currQuestionNumber].submittedAnswer != undefined){
+          showSlide(currentSlide + 1);
+          currQuestionNumber+=1;
+        };
       };
 
       var quizContainer = document.getElementById('quiz');
       var resultsContainer = document.getElementById('results');
       var submitButton = document.getElementById('submit');
+      var currQuestionNumber=0;
+
       buildQuiz();
+      saveAnswer(); // run once so the answers are all logged as "undefined". update answers later
 
       const nextButton = document.getElementById("next");
       const slides = document.querySelectorAll(".slide");
@@ -89,5 +98,6 @@
       showSlide(currentSlide);
 
       // Log answer when submitted
-      submitButton.addEventListener('click', saveAnswers);
+      submitButton.addEventListener('click', endGame);
+      nextButton.addEventListener("click", saveAnswer);
       nextButton.addEventListener("click", showNextSlide);
